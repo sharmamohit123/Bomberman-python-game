@@ -1,6 +1,6 @@
 from __future__ import print_function
 import signal,copy,sys,time
-from random import randint
+import random
 
 class GetchUnix:
     def __init__(self):

@@ -34,10 +34,12 @@ class wall:
             i+=4 
         return 0
 
-    def display_board(self):
+    def display_board(self, score, lives, enemy):
 
         for i in self._board:
             print("".join(map(str, i)))
+        print('\n')
+        print('SCORE: '+str(score)+'        LIVES: '+str(lives)+'\tENEMY LEFT: '+str(enemy))
         return 0
 
 class bricks(wall):
@@ -49,8 +51,8 @@ class bricks(wall):
         y = random.randint(20, 72)        
         x = random.randint(10, 36)
         while(self._check_valid(x, y)==-1):
-            y = random.randint(20, 72)        
-            x = random.randint(10, 36)
+            y = random.randint(20, 65)        
+            x = random.randint(10, 30)
         self._x = x
         self._y = y     
         
@@ -73,4 +75,23 @@ class bricks(wall):
         for i in range(0,4):
             self._board[a][b+i]='%'
             self._board[a+1][b+i]='%'
+        return 0
+    
+    def _die(self):
+        a = self._x
+        b = self._y
+        for i in range(0, 2):
+            for j in range(0, 4):
+                self._board[a+i][b+j] = ' '
+        del self
+
+    def destroy(self, a, b):
+        p1 = self._x
+        p2 = self._y
+        if((b-4<=p2<=b+7 or b-4<=p2+3<=b+7) and (a<=p1<=a+1 or a<=p1+1<=a+1)):
+            self._die()
+            return 1
+        if((a-2<=p1<=a+3 or a-2<=p1+1<=a+4) and (b<=p2<=b+3 or b<=p2+3<=b+3)):
+            self._die()
+            return 1
         return 0
