@@ -147,10 +147,10 @@ class person:
         p1 = self._x
         p2 = self._y
         if((b-4<=p2<=b+7 or b-4<=p2+3<=b+7) and (a<=p1<=a+1 or a<=p1+1<=a+1)):
-            self._die()
+            #self._die()
             return 1
         if((a-2<=p1<=a+3 or a-2<=p1+1<=a+4) and (b<=p2<=b+3 or b<=p2+3<=b+3)):
-            self._die()
+            #self._die()
             return 1
         return 0
 
